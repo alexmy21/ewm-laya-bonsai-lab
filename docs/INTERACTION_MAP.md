@@ -402,15 +402,15 @@ materializer hits the tiny-frame panic).
                     │       ← answer + reasoning + prompt_tokens    │
                     │  6. Bonsai /tokenize → tid stream             │
                     │  7. append frame → ewm-scene S(t)             │
-                    └───────┬───────────────┬───────────────┬───────┘
-                            │               │               │
+                    └───────┬────────────────┬───────────────┬──────┘
+                            │                │               │
                      subprocess         subprocess        HTTP
                      JSONL→JSON        JSONL lines       JSON docs
-                            │               │               │
-                     ┌──────▼───┐   ┌───────▼──────┐  ┌─────▼──────┐
+                            │                │               │
+                     ┌──────▼────┐   ┌───────▼──────┐  ┌─────▼──────┐
                      │ ewm-scene │   │ laya-jsonl   │  │ Bonsai     │
                      │ (lattice) │   │ (System One) │  │ llama.cpp  │
-                     └──────────┘   └──────────────┘  └────────────┘
+                     └───────────┘   └──────────────┘  └────────────┘
 ```
 
 ---
