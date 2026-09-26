@@ -27,7 +27,7 @@ and watch the raw JSON cross it, one hop at a time.
    | 05 | `ewm_laya_bonsai_chain` | **the full chain:** ewm → Laya → Bonsai → ewm, per turn |
    | 06 | `decision_models_compared` | Laya vs Jev vs mock in the decision slot |
 
-### The router R&D series (07–12, imported from ewm-state-machine 22–25)
+### The router R&D series (07–13, imported from ewm-state-machine 22–25)
 
 | # | Notebook | Experiment |
 | --- | --- | --- |
@@ -37,6 +37,7 @@ and watch the raw JSON cross it, one hop at a time.
 | 10 | `shared_lattice_projection` | per-user lattices join the shared lattice; restore `U_u(t) ≈ c(t) ∩ U_u(now)` — a superset estimate, error scales with P (4.7% → 0.5%), codebook-filtered materialization recall 1.000 / precision 0.974 |
 | 11 | `per_user_codebook_gates` | the codebook as a **gate**: `G_u = μ(codebook)`, `G_u ∩ H` extracts the user's component; gated materialization is exact (recall/precision 1.0 up to hash collisions), and `c(t) ∩ G_u` restores per-user state **statelessly** — no per-user history, only codebooks; `ewm-scene project --frame` already computes the gated intersections per named dimension |
 | 12 | `hllset_pagerank` | the lattice as a web: asymmetric BSS = directed coverage links, HSF (`HllsetLut` TH) = popularity prior, PageRank = relatedness navigation beside the Merkle tree's exact lookup; on the notebook-21 lattice the hubs win — `llm_b`/`llm_a` top PageRank despite HSF=1, Spearman(HSF, PR) ≈ 0, and related-search surfaces the codebook gates that cover a query (BSS 0.77/0.67) |
+| 13 | `lattice_gnn` | **no-pretraining GNN validation**: 100 docs (~100 tokens each) stream in, the universal lattice grows, 3 profile gates build themselves, queries (prompts → simulated host-LLM encodings) hit the general lattice + their issuing profile; a 2-layer GCN over the symmetric-BSS graph beats the flat MLP on the same structural features — semi-supervised query accuracy 1.000 vs 0.833, and **query-transfer (train on docs only) 0.933 vs 0.667** — the graph earns its place for recognizing unseen queries from structure alone |
 
 These notebooks consume the sibling `ewm-state-machine/trainer` package
 (`StructuralLlmRouter`, `user_models`, the loop/state extensions) and the
